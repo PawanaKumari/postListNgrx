@@ -18,7 +18,7 @@ postForm:FormGroup|any
   ngOnInit(): void {
     this.postForm = new FormGroup({
       title: new FormControl(null,[Validators.required,Validators.minLength(6)]),
-      description: new FormControl(null,[Validators.required,Validators.minLength(10)]),
+      description: new FormControl(null,[Validators.required,Validators.minLength(6)]),
     })
   }
 

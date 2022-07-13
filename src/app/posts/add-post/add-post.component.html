@@ -2,10 +2,10 @@
     <div class="col-md-12">
       <h3>Add Post</h3>
       <hr />
-      <form [formGroup]="postForm" (ngSubmit)="onAddPost()">
+      <form [formGroup]="postForm" (ngSubmit)="onAddPost()" id="usernameInput">
         <div class="mb-3">
           <label>Title</label>
-          <input type="text" class="form-control" formControlName="title" />
+          <input type="text" class="form-control" formControlName="title"  />
   
           <div
             *ngIf="postForm.get('title').touched && !postForm.get('title').valid"

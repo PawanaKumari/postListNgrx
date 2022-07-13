@@ -22,4 +22,7 @@ describe('EditPostComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  it('should post', () => {
+    expect(component.post).toBeTruthy();
+  });
 });

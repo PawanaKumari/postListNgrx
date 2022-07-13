@@ -30,7 +30,7 @@
   
       <form [formGroup]="postForm" (ngSubmit)="onSubmit()">
         <div class="mb-3">
-          <label>Title</label>
+          <label>Name</label>
           <input type="text" class="form-control" formControlName="title" />
           <div
             *ngIf="postForm.get('title').touched && !postForm.get('title').valid"
