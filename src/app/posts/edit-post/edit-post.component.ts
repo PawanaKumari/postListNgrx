@@ -14,9 +14,9 @@ import { getPostById } from '../post-list/state/post.selector';
   styleUrls: ['./edit-post.component.css'],
 })
 export class EditPostComponent implements OnInit, OnDestroy {
-  post: Post | any;
-  postForm: FormGroup | any;
-  postSubscription: Subscription | any;
+  post!: Post ;
+  postForm!: FormGroup ;
+  postSubscription!: Subscription ;
   constructor(
     private route: ActivatedRoute,
     private store: Store<AppState>,
@@ -24,27 +24,29 @@ export class EditPostComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.createForm();
+   
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       console.log(id, 'iddd');
       this.postSubscription = this.store
-        .select(getPostById,id )
+        .select(getPostById, {id})
         .subscribe((data) => {
           console.log(data, 'ddddd');
           this.post = data;
+          this.createForm();
         });
     });
-    console.log(this.postSubscription,"sdfsdfd")
-
+    
+    
   }
   createForm() {
     this.postForm = new FormGroup({
-      title: new FormControl(null, [
+      id:new FormControl(null,[Validators.required]),
+      name: new FormControl(null, [
         Validators.required,
         Validators.minLength(6),
       ]),
-      description: new FormControl(null, [
+      email: new FormControl(null, [
         Validators.required,
         Validators.minLength(10),
       ]),
@@ -54,15 +56,13 @@ export class EditPostComponent implements OnInit, OnDestroy {
     if (!this.postForm.valid) {
       return;
     }
-
-    const title = this.postForm.value.title;
-    console.log(title, 'title');
-    const description = this.postForm.value.description;
-
+    const id =this.postForm.value.id;
+    const name = this.postForm.value.name;
+    const email = this.postForm.value.email;
     const post: Post = {
       id: this.post.id,
-      title,
-      description,
+      name,
+      email,
     };
 
     //dispatch the action

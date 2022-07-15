@@ -1,27 +1,51 @@
-<div class="row my-4">
+ <div class="row my-4">
     <div class="col-md-12">
       <h3>Add Post</h3>
       <hr />
       <form [formGroup]="postForm" (ngSubmit)="onAddPost()" id="usernameInput">
         <div class="mb-3">
-          <label>Title</label>
-          <input type="text" class="form-control" formControlName="title"  />
+          <label>Id</label>
+          <input type="text" class="form-control" formControlName="id"  />
   
           <div
-            *ngIf="postForm.get('title').touched && !postForm.get('title').valid"
+            *ngIf="postForm.get('id').touched && !postForm.get('id').valid"
           >
-            <div *ngIf="postForm.get('title').errors.required">
+            <div *ngIf="postForm.get('id').errors.required">
+              id is required
+            </div>
+            <div *ngIf="postForm.get('id').errors.minlength">
+              id should be minimum 6 characters
+            </div>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label>Name</label>
+          <input type="text" class="form-control" formControlName="name"  />
+  
+          <div
+            *ngIf="postForm.get('name').touched && !postForm.get('name').valid"
+          >
+            <div *ngIf="postForm.get('name').errors.required">
               Title is required
             </div>
-            <div *ngIf="postForm.get('title').errors.minlength">
+            <div *ngIf="postForm.get('name').errors.minlength">
               Title should be minimum 6 characters
             </div>
           </div>
         </div>
         <div class="mb-3">
-          <label>Description</label>
-          <textarea class="form-control" formControlName="description"></textarea>
-         
+          <label>Email</label>
+          <input type="email" class="form-control" formControlName="email"  />
+          <div
+          *ngIf="postForm.get('email').touched && !postForm.get('email').valid"
+        >
+          <div *ngIf="postForm.get('email').errors.required">
+            Description  is required
+          </div>
+          <div *ngIf="postForm.get('email').errors.minlength">
+            Description should be minimum 6 characters
+          </div>
+        </div>
         </div>
   
         <div class="my-3">

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/model/posts.model';
@@ -13,13 +13,18 @@ import { addPost } from '../post-list/state/post.action';
 })
 export class AddPostComponent implements OnInit {
 postForm:FormGroup|any
-  constructor(private router:Router,private store:Store<AppState>) { }
+  constructor(private router:Router,  private formBuilder: FormBuilder ,private store:Store<AppState>) { }
 
   ngOnInit(): void {
-    this.postForm = new FormGroup({
-      title: new FormControl(null,[Validators.required,Validators.minLength(6)]),
-      description: new FormControl(null,[Validators.required,Validators.minLength(6)]),
+    this.postForm = this.formBuilder.group({
+      id: new FormControl(null,[Validators.required]),
+      name: new FormControl(null,[Validators.required,Validators.minLength(6)]),
+      email: new FormControl(null,[Validators.required,Validators.minLength(6)]),
     })
+  }
+
+  get f() {
+    return this.postForm.controls;
   }
 
 //   showDescriptionError(){
@@ -35,8 +40,9 @@ postForm:FormGroup|any
     return;
   }
   const post:Post = {
-    title:this.postForm.value.title,
-    description:this.postForm.value.description,
+    id:this.postForm.value.id,
+    name:this.postForm.value.name,
+    email:this.postForm.value.email,
   }
   this.store.dispatch(addPost({post}))
   this.router.navigate(['posts'])

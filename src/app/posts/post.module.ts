@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
@@ -26,6 +26,7 @@ const routes: Routes = [
 ];
 @NgModule({
   declarations: [PostListComponent, AddPostComponent, EditPostComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -33,5 +34,7 @@ const routes: Routes = [
     StoreModule.forFeature(LOAD_POSTS_SUCCESS, postsReducer),
     EffectsModule.forFeature([PostEffects]),
   ],
+  
+ 
 })
 export class PostModule {}

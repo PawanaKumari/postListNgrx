@@ -27,7 +27,7 @@ export class PostEffects {
         return this.postservice.addPost(action.post).pipe(
           map((data) => {
             console.log(data,"datataaaa")
-            const post = { ...action.post, id: data.name };
+            const post = { ...action.post, id: data.id };
             return addPostSuccess({ post });
           })
         );
@@ -40,9 +40,9 @@ export class PostEffects {
     return this.action$.pipe(
       ofType(updatePost),
       switchMap((action) => {
-        return this.postservice.updatePost(action.post).pipe(
+        return this.postservice.updatePost(action.post,action.post.id).pipe(
           map((data) => {
-          
+          console.log(data,"data")
             return updatePostSuccess({ post: action.post });
           })
         );

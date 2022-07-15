@@ -10,8 +10,9 @@ export const getPostById = createSelector(
   getPostsState,
   (state: any, props: any) => {
    return state.posts.find((post: any) => {
-     console.log(post,"ppppppppppppppp")
-    post.id==props.id;
+    //  console.log(props.id,"ppppppppppppppp")
+    //  console.log(post[props.id],"jhfhdfhfdhjh")
+    post.id===props.id;
     });
   }
 );

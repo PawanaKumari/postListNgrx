@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { By } from '@angular/platform-browser';
 
 import { CustomCounterInputComponent } from './custom-counter-input.component';
 
@@ -6,12 +7,12 @@ describe('CustomCounterInputComponent', () => {
   let component: CustomCounterInputComponent;
   let fixture: ComponentFixture<CustomCounterInputComponent>;
 
-  // beforeEach(async () => {
-  //   await TestBed.configureTestingModule({
-  //     declarations: [ CustomCounterInputComponent ]
-  //   })
-  //   .compileComponents();
-  // });
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      declarations: [ CustomCounterInputComponent ]
+    })
+    .compileComponents();
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CustomCounterInputComponent);
@@ -19,11 +20,18 @@ describe('CustomCounterInputComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should create component', () => {
+    fixture = TestBed.createComponent(CustomCounterInputComponent);
+    component = fixture.componentInstance;
+    expect(component.title).toEqual('this is ngrx');
   });
-  // it('should create add', () => {
-  //   expect(component.onAdd).toBeTruthy();
-  // });
-
+  it('should click Send button with async', async(() => {
+    let buttonElement = fixture.debugElement.query(By.css('.btn-primary'));
+        spyOn(component, 'onAdd');
+    //Trigger click event after spyOn
+    buttonElement.triggerEventHandler('click', null);
+    fixture.whenStable().then(() => {
+      expect(component.onAdd).toHaveBeenCalled();
+    });
+  })); 
 });

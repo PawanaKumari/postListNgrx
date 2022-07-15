@@ -12,6 +12,7 @@ import { CounterState } from '../state/counter.state';
   styleUrls: ['./custom-counter-input.component.css']
 })
 export class CustomCounterInputComponent implements OnInit {
+  title="this is ngrx"
 value!:number;
 channelName$!:Observable<string>;
   constructor(private store:Store<AppState>) { }

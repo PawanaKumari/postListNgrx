@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
@@ -15,6 +15,10 @@ import { HeaderComponent } from './shared/components/header/header.component';
 import { appReducer } from './store/app.state';
 
 import { PostEffects } from './posts/post-list/state/post.effect';
+import { PostModule } from './posts/post.module';
+import { CounterModule } from './counter/counter.module';
+import { RouterModule } from '@angular/router';
+
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, HeaderComponent],
@@ -23,6 +27,9 @@ import { PostEffects } from './posts/post-list/state/post.effect';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    PostModule,
+    CounterModule,
+    RouterModule,
     HttpClientModule,
     StoreModule.forRoot(appReducer),
     EffectsModule.forRoot(),
@@ -30,7 +37,10 @@ import { PostEffects } from './posts/post-list/state/post.effect';
       logOnly: environment.production,
     }),
   ],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [],
+  // exports:[PostModule,CounterModule],
   bootstrap: [AppComponent],
+
 })
 export class AppModule {}

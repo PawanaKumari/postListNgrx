@@ -14,9 +14,7 @@ export class CounterOutputComponent implements OnInit {
 
 // counter$! :Observable<{counter : number}>;
 counter$!: Observable<number>
-public title = 'NOTICE BOARD';
-public disableNoButton = true;
-public userResponse: string | undefined;
+
 
   constructor(private store:Store<AppState>) { }
 
@@ -25,9 +23,7 @@ public userResponse: string | undefined;
     // this.counter$ = this.store.select('counter')
     this.counter$ = this.store.select(getCounter)
   }
-  public sayYes() {
-    this.userResponse = 'I am In';
-  }
+
 
 
 

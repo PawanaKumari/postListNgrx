@@ -1,17 +1,28 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { By } from '@angular/platform-browser';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddPostComponent } from './add-post.component';
+import { DebugElement } from '@angular/core';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
   let fixture: ComponentFixture<AddPostComponent>;
+  let de: DebugElement;
+  let el: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddPostComponent],
-      imports: [FormsModule, ReactiveFormsModule],
-    }).compileComponents();
+      imports: [FormsModule, ReactiveFormsModule,HttpClientTestingModule],
+    }).compileComponents().then(() => {
+      fixture = TestBed.createComponent(AddPostComponent);
+      component = fixture.componentInstance;
+      component.ngOnInit();
+      fixture.detectChanges();
+      de = fixture.debugElement.query(By.css('form'));
+      el = de.nativeElement;
+    });;
   });
 
   beforeEach(() => {
@@ -21,34 +32,12 @@ describe('AddPostComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy(true);
-  });
+ 
   it('form invalid when empty', () => {
-    // expect(component.postForm.Validators.minLength).toEqual(6);
-    expect(component.postForm.control.hasError('titleInvalid', ['title'])).toBe(true);
+    component.postForm.controls.title.setValue('');
+    component.postForm.controls.description.setValue('');
+    expect(component.postForm.valid).toBeFalsy();
   });
-  it('title field validity',()=>{
-    let title = component.postForm.controls['title']
-    expect(title.valid).toBeFalsy();
-  title.setValue("");
-        expect(title.hasError('required')).toBeTruthy();
 
-        title.setValue("A");
-        expect(title.hasError('minLength', ['minlength'])).toBeFalsy();
-  })
-  it('test form group element', () => {
-    const formElement =
-      fixture.debugElement.nativeElement.querySelector('#usernameInput');
-    const inputElement = formElement.querySelectorAll('input');
-    expect(inputElement.minLength).toEqual(6);
-  });
-  it('test form for the values', () => {
-    const loginFormGroup = component.postForm;
-    const loginFormValue = {
-      title: 'hhhhhhhhhhhh',
-      description: '',
-    };
-    expect(loginFormValue.title).toEqual('hhhhhhhhhhhh');
-  });
-});
+})
+
