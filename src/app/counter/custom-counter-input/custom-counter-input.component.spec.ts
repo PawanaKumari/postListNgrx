@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { CounterModule } from '../counter.module';
 
 import { CustomCounterInputComponent } from './custom-counter-input.component';
 
@@ -9,6 +11,7 @@ describe('CustomCounterInputComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[CounterModule,ReactiveFormsModule,FormsModule],
       declarations: [ CustomCounterInputComponent ]
     })
     .compileComponents();

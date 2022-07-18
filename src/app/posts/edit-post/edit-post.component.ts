@@ -27,9 +27,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
    
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
-      console.log(id, 'iddd');
+      console.log(id, 'idddddddddd');
       this.postSubscription = this.store
-        .select(getPostById, {id})
+        .select(getPostById,{id})
         .subscribe((data) => {
           console.log(data, 'ddddd');
           this.post = data;

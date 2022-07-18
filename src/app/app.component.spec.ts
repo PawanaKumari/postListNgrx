@@ -30,7 +30,12 @@ describe('AppComponent', () => {
     const app = fixture.componentInstance;
     expect(app.name).toEqual('pawana');
   });
-  
+
+    it("H1 tag should be Hello World", () => {
+      const fixture = TestBed.createComponent(AppComponent);
+    var h1: HTMLElement = fixture.nativeElement.querySelector("h1");
+    expect(h1.textContent).toEqual("Hello World");  
+  })
 
 
 });

@@ -4,6 +4,7 @@ import { PostListComponent } from './post-list.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+import { PostModule } from '../post.module';
 
 describe('PostListComponent', () => {
   let component: PostListComponent;
@@ -13,6 +14,7 @@ describe('PostListComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[PostModule,ReactiveFormsModule,FormsModule],
       declarations: [ PostListComponent ]
     })
     .compileComponents().then(() => {

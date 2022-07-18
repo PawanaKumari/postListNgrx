@@ -1,4 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { CounterModule } from '../counter.module';
 
 import { CounterComponent } from './counter.component';
 
@@ -8,18 +10,30 @@ describe('CounterComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports:[CounterModule,RouterTestingModule],
       declarations: [ CounterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports:[CounterModule,RouterTestingModule],
+      declarations: [ CounterComponent ]
+    })
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
 
+  it(`should have as title 'ngrxCounter'`, () => {
+    const fixture = TestBed.createComponent(CounterComponent);
+    const component = fixture.componentInstance;
+    expect(component.title).toEqual('ngrxCounter');
+  });
+
   it('should create', () => {
-    expect(component).toBeTruthy();
+    const module = TestBed.inject(CounterModule);
+        expect(module).toBeTruthy();
   });
 });

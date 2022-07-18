@@ -1,47 +1,39 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { Post } from '../model/posts.model';
 
 import { PostsService } from './posts.service';
 
 describe('PostsService', () => {
-  let httpClientSpy:jasmine.SpyObj<HttpClient>
-  let service: PostsService;
-  let mockResponse = [
-    {
-      title: '	hhhhhhhhhhhh',
-      description: '',
-      id: '-N6DStTjBaK8WKQxY24W',
-    },
-    {
-      title: 'New post 5',
-      description: '',
-      id: '-N6HP5Ey1GHiuyUe4eeZ',
-    },
- 
-  ];
-  let mockHttpClient: HttpClient;
-  beforeEach(() => {
-    httpClientSpy = jasmine.createSpyObj('HttpClient',['get'])
-    service = new PostsService(httpClientSpy);
-  
+  beforeEach(() => TestBed.configureTestingModule({
+    imports: [HttpClientModule],
+    providers: [PostsService]
+  }));
+   const service = TestBed.get(DataNewService)
+  it('should be created', () => {
+    const service: PostsService = TestBed.get(DataNewService);
+    expect(service).toBeTruthy();
   });
-
- 
-describe('getPosts()',()=>{
-  it('should be response', () => {
-   
-   httpClientSpy.get.and.returnValue(of(mockResponse));
-   service.getPosts().subscribe({
-     next:(posts)=>{
-       expect(posts).toEqual(posts)
-     },
-     error:(err)=>{
-       'this is error'
-     }
-   });
-   expect(httpClientSpy.get).toHaveBeenCalledTimes(1)
-  });
+  it('be able to retrieve posts from the API bia GET', () => {
+    const dummyPosts: Post[] = [{
+       
+        id: 1,
+        name: 'Http Client',
+        email: 'paw@gmail.com'
+        }, {
+       
+        id: 2,
+        name: 'Hello World2',
+        email: 'asasd@gmail.com'
+    }];
+    service.getPost().subscribe((posts: string | any[]) => {
+        expect(posts.length).toBe(2);
+        expect(posts).toEqual(dummyPosts);
+    });
+});
 })
 
-});
+  function DataNewService(DataNewService: any) {
+    throw new Error('Function not implemented.');
+  }

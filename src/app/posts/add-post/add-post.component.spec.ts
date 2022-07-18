@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { AddPostComponent } from './add-post.component';
 import { DebugElement } from '@angular/core';
+import { PostModule } from '../post.module';
 
 describe('AddPostComponent', () => {
   let component: AddPostComponent;
@@ -14,7 +15,7 @@ describe('AddPostComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AddPostComponent],
-      imports: [FormsModule, ReactiveFormsModule,HttpClientTestingModule],
+      imports: [FormsModule, ReactiveFormsModule,HttpClientTestingModule,PostModule],
     }).compileComponents().then(() => {
       fixture = TestBed.createComponent(AddPostComponent);
       component = fixture.componentInstance;
