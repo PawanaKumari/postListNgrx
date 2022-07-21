@@ -37,7 +37,7 @@
         <div class="mb-3">
           <label>Name</label>
           <input type="text" class="form-control" formControlName="name" />
-          <!-- <div
+          <div
             *ngIf="postForm.get('name').touched && !postForm.get('name').valid"
           >
             <div *ngIf="postForm.get('name').errors.required">
@@ -46,12 +46,12 @@
             <div *ngIf="postForm.get('name').errors.minlength">
               name should be minimum 6 characters
             </div>
-          </div> -->
+          </div>
         </div>
         <div class="mb-3">
           <label>Email</label>
           <textarea class="form-control" formControlName="email"></textarea>
-          <!-- <div
+          <div
             *ngIf="
               postForm.get('email').touched &&
               !postForm.get('email').valid
@@ -63,7 +63,7 @@
             <div *ngIf="postForm.get('email').errors.minlength">
               email should be minimum 10 characters
             </div>
-          </div> -->
+          </div>
         </div>
   
         <div class="my-3">

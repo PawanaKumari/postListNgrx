@@ -18,10 +18,11 @@ export class PostListComponent implements OnInit {
   ngOnInit(): void {
     this.posts$ = this.store.select(getPosts);
     this.store.dispatch(loadPosts())
+
   }
-  onDeletePost(id:number) {
+  onDeletePost(id:string) {
     if (confirm('Are you sure want to delete')) {
-      console.log('delete the post');
+      console.log(id,'delete the post');
       this.store.dispatch(deletePost({id}));
     }
   }

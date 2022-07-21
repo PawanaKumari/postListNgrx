@@ -8,28 +8,28 @@ describe('CounterComponent', () => {
   let component: CounterComponent;
   let fixture: ComponentFixture<CounterComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports:[CounterModule,RouterTestingModule],
-      declarations: [ CounterComponent ]
-    })
-    .compileComponents();
-  });
+  // beforeEach(async () => {
+  //   await TestBed.configureTestingModule({
+  //     imports:[CounterModule,RouterTestingModule],
+  //     declarations: [ CounterComponent ]
+  //   })
+  //   .compileComponents();
+  // });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports:[CounterModule,RouterTestingModule],
       declarations: [ CounterComponent ]
-    })
+    });
     fixture = TestBed.createComponent(CounterComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+    component.ngOnInit();
   });
 
   it(`should have as title 'ngrxCounter'`, () => {
     const fixture = TestBed.createComponent(CounterComponent);
     const component = fixture.componentInstance;
-    expect(component.title).toEqual('ngrxCounter');
+    expect(component).toBeTruthy();
   });
 
   it('should create', () => {

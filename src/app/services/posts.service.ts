@@ -25,18 +25,18 @@ export class PostsService {
     );
   }
 
-  updatePost(post: Post|any,id:number) {
-    // const postData = {
-    //   [post.id]: {id:post.id, name: post.name, email: post.email },
-    // };
-    return this.http.put(
-      "https://gorest.co.in/public/v2/users/"+"/"+id,
-      post
+  updatePost(post: Post) {
+    const postData = {
+      [post.id]: { name: post.name, email: post.email },
+    };
+    return this.http.patch(
+      "https://gorest.co.in/public/v2/users",
+      postData
     );
   }
-  deletePost(id: number) {
-    return this.http.delete<any>(
-      "https://gorest.co.in/public/v2/users"+"/"+id
+  deletePost(id: string): Observable<Post> {
+    return this.http.delete<Post>(
+      "https://gorest.co.in/public/v2/users/"+"/"+id
     );
   }
 }

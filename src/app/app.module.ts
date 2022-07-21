@@ -31,8 +31,9 @@ import { RouterModule } from '@angular/router';
     CounterModule,
     RouterModule,
     HttpClientModule,
-    StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot(),
+ 
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     }),

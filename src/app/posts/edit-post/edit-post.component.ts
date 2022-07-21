@@ -8,6 +8,7 @@ import { AppState } from 'src/app/store/app.state';
 import { updatePost } from '../post-list/state/post.action';
 import { getPostById } from '../post-list/state/post.selector';
 
+
 @Component({
   selector: 'app-edit-post',
   templateUrl: './edit-post.component.html',
@@ -15,7 +16,7 @@ import { getPostById } from '../post-list/state/post.selector';
 })
 export class EditPostComponent implements OnInit, OnDestroy {
   post!: Post ;
-  postForm!: FormGroup ;
+  postForm!: any ;
   postSubscription!: Subscription ;
   constructor(
     private route: ActivatedRoute,
@@ -24,19 +25,29 @@ export class EditPostComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-   
-    this.route.paramMap.subscribe((params) => {
-      const id = params.get('id');
-      console.log(id, 'idddddddddd');
-      this.postSubscription = this.store
-        .select(getPostById,{id})
-        .subscribe((data) => {
-          console.log(data, 'ddddd');
-          this.post = data;
-          this.createForm();
+    // this.createForm();
+    // this.route.paramMap.subscribe((params) => {
+    //   const id = params.get('id');
+    //   console.log(id, 'idddddddddd');
+    //   this.postSubscription = this.store
+    //     .select(getPostById,{id})
+    //     .subscribe((data) => {
+    //       console.log(data, 'ddddd');
+    //       this.post = data;
+         
+    //     });
+    // });
+
+      this.createForm();
+    this.store.select(getPostById,{}).subscribe((post) => {
+      if (post) {
+        this.post = post;
+        this.postForm.patchValue({
+          title: post.title,
+          description: post.description,
         });
+      }
     });
-    
     
   }
   createForm() {
@@ -51,6 +62,9 @@ export class EditPostComponent implements OnInit, OnDestroy {
         Validators.minLength(10),
       ]),
     });
+  }
+  get f(){
+     return  this.postForm.controls
   }
   onSubmit() {
     if (!this.postForm.valid) {

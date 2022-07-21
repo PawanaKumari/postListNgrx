@@ -31,8 +31,9 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature(LOAD_POSTS_SUCCESS, postsReducer),
+    StoreModule.forFeature('posts', postsReducer),
     EffectsModule.forFeature([PostEffects]),
+    
   ],
   
  

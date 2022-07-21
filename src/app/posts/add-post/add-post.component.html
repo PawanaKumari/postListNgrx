@@ -4,17 +4,17 @@
       <hr />
       <form [formGroup]="postForm" (ngSubmit)="onAddPost()" id="usernameInput">
         <div class="mb-3">
-          <label>Id</label>
-          <input type="text" class="form-control" formControlName="id"  />
+          <label>id</label>
+          <input type="text" class="form-control" formControlName="name"  />
   
           <div
-            *ngIf="postForm.get('id').touched && !postForm.get('id').valid"
+            *ngIf="postForm.get('name').touched && !postForm.get('name').valid"
           >
-            <div *ngIf="postForm.get('id').errors.required">
-              id is required
+            <div *ngIf="postForm.get('name').errors.required">
+              Title is required
             </div>
-            <div *ngIf="postForm.get('id').errors.minlength">
-              id should be minimum 6 characters
+            <div *ngIf="postForm.get('name').errors.minlength">
+              Title should be minimum 6 characters
             </div>
           </div>
         </div>

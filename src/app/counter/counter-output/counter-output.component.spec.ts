@@ -2,6 +2,7 @@ import { DebugElement } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 import { CounterModule } from '../counter.module';
 import { CounterOutputComponent } from './counter-output.component';
 
@@ -11,7 +12,7 @@ describe('CounterOutputComponent', () => {
  
   beforeEach(() => {
      TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, FormsModule,CounterModule],
+      imports: [ReactiveFormsModule, FormsModule,CounterModule,RouterTestingModule],
       declarations: [CounterOutputComponent], 
     })
     fixture = TestBed.createComponent(CounterOutputComponent);

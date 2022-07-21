@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/model/posts.model';
 import { AppState } from 'src/app/store/app.state';
-import { addPost, addPostSuccess } from '../post-list/state/post.action';
+import { addPost } from '../post-list/state/post.action';
 
 @Component({
   selector: 'app-add-post',
@@ -44,7 +44,7 @@ postForm:FormGroup|any
     name:this.postForm.value.name,
     email:this.postForm.value.email,
   }
-  this.store.dispatch(addPostSuccess({post}))
+  this.store.dispatch(addPost({post}))
   this.router.navigate(['posts'])
   }
 
