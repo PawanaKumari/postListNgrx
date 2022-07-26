@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { Post } from 'src/app/model/posts.model';
 import { AppState } from 'src/app/store/app.state';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 import { addPost } from '../post-list/state/post.action';
 
 @Component({
@@ -44,6 +45,7 @@ postForm:FormGroup|any
     name:this.postForm.value.name,
     email:this.postForm.value.email,
   }
+  this.store.dispatch(setLoadingSpinner({status:true}))
   this.store.dispatch(addPost({post}))
   this.router.navigate(['posts'])
   }

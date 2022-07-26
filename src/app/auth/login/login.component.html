@@ -9,11 +9,11 @@
           <input type="text" class="form-control" formControlName="email" />
           <div
           *ngIf="
-          (loginForm.get('email').invalid && loginForm.get('email').touched) ||
-          loginForm.get('email').dirty
+          (loginForm.get('email')?.invalid && loginForm.get('email')?.touched) ||
+          loginForm.get('email')?.dirty
         "
           >
-         
+         <div>Email is required</div>
           </div>
         </div>
         <div class="mb-3">
@@ -23,8 +23,8 @@
             class="form-control"
             formControlName="password"
           />
-          <div *ngIf="loginForm.get('password').touched || loginForm.get('password').dirty">
-       
+          <div *ngIf="loginForm.get('password')?.touched || loginForm.get('password')?.dirty">
+       <div>Password id required</div>
           </div>
         </div>
         <div class="mb-3">

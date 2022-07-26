@@ -13,9 +13,11 @@ import {
   updatePost,
   updatePostSuccess,
 } from './post.action';
+import { AppState } from 'src/app/store/app.state';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 @Injectable()
 export class PostEffects {
-  constructor(private action$: Actions, private postservice: PostsService) {}
+  constructor(private action$: Actions, private postservice: PostsService,private store:Store<AppState>) {}
 
   loadPosts$ = createEffect(() => {
     return this.action$.pipe(
@@ -24,6 +26,7 @@ export class PostEffects {
         console.log(action, 'action');
         return this.postservice.getPosts().pipe(
           map((posts) => {
+            this.store.dispatch(setLoadingSpinner({status:false}))
             return loadPostsSuccess({ posts });
           })
         );

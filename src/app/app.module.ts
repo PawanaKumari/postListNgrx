@@ -18,10 +18,12 @@ import { PostEffects } from './posts/post-list/state/post.effect';
 import { PostModule } from './posts/post.module';
 import { CounterModule } from './counter/counter.module';
 import { RouterModule } from '@angular/router';
+import { LoadingSpinnerComponent } from './shared/components/loading-spinner/loading-spinner.component';
+import { AuthEffects } from './auth/state/auth.effects';
 
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, HeaderComponent],
+  declarations: [AppComponent, HomeComponent, HeaderComponent, LoadingSpinnerComponent],
   imports: [
     BrowserModule,
     FormsModule,
@@ -32,8 +34,8 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     HttpClientModule,
  
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       logOnly: environment.production,
     }),

@@ -3,11 +3,11 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLinkActive, RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
-import { StoreModule } from '@ngrx/store';
+;
 import { LoginComponent } from './login/login.component';
 import { AuthEffects } from './state/auth.effects';
-import { AuthReducer } from './state/auth.reducer';
-import { AUTH_STATE_NAME } from './state/auth.selector';
+import { SignupComponent } from './signup/signup.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -16,14 +16,15 @@ const routes: Routes = [
         path: '',
         redirectTo: 'login',
       },
-      { path: 'login', component: LoginComponent }
+      { path: 'login', component: LoginComponent },
+      { path: 'signup', component: SignupComponent },
     ]
   },
 ];
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, SignupComponent],
   imports: [CommonModule,ReactiveFormsModule,FormsModule,
-    EffectsModule.forFeature([AuthEffects]),
-    StoreModule.forFeature(AUTH_STATE_NAME,AuthReducer), RouterModule.forChild(routes)],
+    EffectsModule.forFeature(),
+     RouterModule.forChild(routes)],
 })
 export class AuthModule {}
